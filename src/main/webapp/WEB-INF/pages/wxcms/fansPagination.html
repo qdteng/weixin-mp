@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		<script type="text/javascript">
+			function doSync(){
+				if(confirm("确定同步?")){
+					window.location.href='${s.base}/wxapi/syncAccountFansList.html';
+				}
+			}
+		</script>
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">粉丝管理</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						管理、同步微信公众账号的粉丝（认证公众号）
+					</span>
+				</div>
+				<form id="queryPageForm" action="">
+				<div class="block-content-content">
+					<div class="optbar">
+						<input class="btn" onclick="doSync();" style="width:150px;" type="button" value="批量同步粉丝"/>
+					</div>
+					<table class="fm-table">
+						<thead>
+							<tr style="height: 45px;">
+								<td style="width:100px;">昵称</td>
+								<td style="width:30px;">性别</td>
+								<td style="width:100px;">省-市</td>
+								<td style="width:30px;"></td>
+							</tr>
+						</thead>
+						<tbody>
+							<#list pagination.items as row>
+							<#if row_index %2 == 0>
+							<tr style="height:40px;">
+							<#else>
+							<tr style="height:40px;background-color:#f9f9f9;">
+							</#if>
+								<td>${row.nicknameStr!}</td>
+								<td>
+									<#if row.gender == 1 >
+										男
+									<#else>
+										女
+									</#if>
+								</td>
+								<td>${row.province!}-${row.city!}</td>
+								<td>
+									<a href="${s.base}/wxapi/syncAccountFans.html?openId=${row.openId!}">
+									<input type="button" style="width:150px;" class="btn" value="同步粉丝信息"/>
+									</a>
+								</td>
+							</tr>
+							</#list>
+						</tbody>
+					</table>
+					
+					<#include "../common/pagination.html">
+				</div>
+				</form>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wxcms.mapper.MsgNewsDao">
+
+
+	<select id="listForPage" parameterType="com.wxcms.domain.MsgNews" resultType="com.wxcms.domain.MsgNews">
+		SELECT * FROM t_wxcms_msg_news t , t_wxcms_msg_base b WHERE t.base_id = b.id ORDER BY t.ID
+	</select>
+	
+	<select id="pageWebNewsList" resultType="com.wxcms.domain.MsgNews">
+		SELECT t.* , date_format(b.createTime,'%Y-%m-%d') as createTimeStr FROM t_wxcms_msg_news t , t_wxcms_msg_base b 
+		WHERE t.base_id = b.id 
+		ORDER BY b.createTime desc
+		LIMIT #{param2.start} , #{param2.pageSize} 
+	</select>
+
+	<select id="getById" parameterType="java.lang.String" resultType="com.wxcms.domain.MsgNews">
+		SELECT * FROM t_wxcms_msg_news WHERE ID = #{id}
+	</select>
+	
+	<select id="getRandomMsgByContent" resultType="com.wxcms.domain.MsgNews">
+		SELECT t.* from t_wxcms_msg_news t , t_wxcms_msg_base b
+		WHERE b.inputCode like CONCAT('%','${param1}','%' ) and t.base_id = b.id 
+		ORDER BY RAND() LIMIT #{param2}
+	</select>
+	
+	<select id="getRandomMsg" parameterType="java.lang.Integer" resultType="com.wxcms.domain.MsgNews">
+		SELECT t.* from t_wxcms_msg_news t , t_wxcms_msg_base b
+		WHERE t.base_id = b.id 
+		ORDER BY RAND() LIMIT #{num}
+	</select>
+	
+	<select id="getMsgNewsByIds" resultType="com.wxcms.domain.MsgNews" >
+    	SELECT * FROM t_wxcms_msg_news WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">  
+		 #{item}  
+		</foreach>  
+	</select>
+
+	<insert id="add" parameterType="com.wxcms.domain.MsgNews" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_wxcms_msg_news ( TITLE,AUTHOR,BRIEF,DESCRIPTION,PICPATH,SHOWPIC,URL,FROMURL,BASE_ID )  VALUES ( #{title},#{author},#{brief},#{description},#{picpath},#{showpic},#{url},#{fromurl},#{baseId} ) 
+	</insert>
+
+	<update id="updateUrl" parameterType="com.wxcms.domain.MsgNews" flushCache="true">
+		UPDATE t_wxcms_msg_news SET URL = #{url} WHERE ID = #{id} 
+	</update>
+	
+	<update id="update" parameterType="com.wxcms.domain.MsgNews" flushCache="true">
+		UPDATE t_wxcms_msg_news SET TITLE = #{title},AUTHOR = #{author},BRIEF = #{brief},DESCRIPTION = #{description},PICPATH = #{picpath},URL = #{url},FROMURL = #{fromurl},SHOWPIC = #{showpic} WHERE ID = #{id} 
+	</update>
+
+	<delete id="delete" parameterType="com.wxcms.domain.MsgNews" >
+		DELETE FROM t_wxcms_msg_news WHERE ID = #{id}
+	</delete>
+
+</mapper>

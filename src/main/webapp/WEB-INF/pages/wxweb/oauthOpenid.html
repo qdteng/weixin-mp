@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,user-scalable=no" name="viewport">
+		<title>我的openid和信息</title>
+		<style>
+			#id_description p{
+				font-size: 16px;
+				letter-spacing:2px;
+				line-height:22px;
+				font-family: "Microsoft YaHei" ! important;
+				color: #3e3e3e;
+			}
+			#id_description img{
+				margin-top: 2px;
+				border-radius:5px; 
+			}
+		</style>
+	</head>
+	
+	<body style="margin: 0px;padding: 0px;background-color:#e7e8eb;">
+		<div style="margin:0 auto;background-color:#fff;">
+			<div style="padding: 0px 20px;">
+				<div style="height:10px;"></div>
+			
+				<div style="font-weight:bold;font-size:20px;border-bottom:1px solid #e7e8eb;">
+				我的openid和信息，请确保您已经关注了微信派官方账号（weixinpy-com）：
+				</div>
+				
+				<div style="margin:10px 0px;">
+					我的openid : ${openid!}
+				</div>
+				
+				<div>
+					<#if fans??>
+					<div>我的信息：</div>
+					<div style="margin-top:5px;"><img src="${fans.headimgurl!}" width="80px;"/></div>
+					<div style="margin-top:5px;">${fans.nicknameStr!}</div>
+					<div style="margin-top:5px;">${fans.province!}-${fans.city!}</div>
+					</#if>
+				</div>
+			</div>
+			<#include "../common/wx_footer.html">
+		</div>
+	</body>
+</html>
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		
+		<script type="text/javascript">
+			function doDelete(id,baseId){
+				if(confirm("确定删除?")){
+					window.location.href='${s.base}/msgnews/delete.html?id='+id+'&baseId='+baseId
+				}
+			}
+		</script>
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">图文消息</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						图文消息管理
+					</span>
+				</div>
+			
+				<div class="block-content-content">
+					<table class="fm-table">
+						<thead>
+							<tr>
+								<td style="width: 150px;">关键词</td>
+								<td>标题</td>
+								<!-- <td>图片</td> -->
+								<td style="width: 250px;">
+									<input onclick="window.location.href='${s.base}/msgnews/toMerge.html'" class="btn" type="button" value="添 加"/>
+								</td>
+							</tr>
+						</thead>
+					
+						<tbody>
+							<#list pageList as row>
+							<#if row_index %2 == 0>
+							<tr>
+							<#else>
+							<tr class="even-tr">
+							</#if>
+								<td>${row.inputcode!}</td>
+								<td style="text-align:left;">${row.title!}</td>
+								<!-- <td>
+									<img src="${row.picpath!}" style="border:none;height:40px;width:60px;"/>
+								</td> -->
+								<td>
+									<a href="javascript:void(0);" onclick="doDelete('${row.id}','${row.baseId}')">删除</a>&nbsp;&nbsp;
+									<a href="${s.base}/msgnews/toMerge.html?id=${row.id}">修改</a>&nbsp;&nbsp;
+									<#if row.fromurl?? && row.fromurl != '' >
+									<a href="${row.fromurl!}" target="_blank">预览</a>
+									<#else>
+									<a href="${row.url!}" target="_blank">预览</a>
+									</#if>
+								</td>
+							</tr>
+							</#list>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="clearfloat"></div>
+		</div>
+		
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

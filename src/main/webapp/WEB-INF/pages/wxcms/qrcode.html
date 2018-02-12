@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">生产参数二维码</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						公众账号创建带参数的二维码或者临时二维码实现场景需要。以创建临时参数二维码（60s）为例。
+					</span>
+				</div>
+				<div class="block-content-content">
+					<!-- 创建二维码form 和 二维码的展现在同一个页面 -->
+					<#if num??>
+					<div>
+						<span>参数：${num!}</span>
+					</div>
+					<div style="margin: 5px 0px;">
+						<span>永久二维码：</span>
+					</div>
+					
+					<#if qrcode??>
+					<div>
+						<img src="${s.base}${qrcode!}" alt="" style="width:200px;"/>
+					</div>
+					<div style="width:200px;text-align:center;">(扫一扫)</div>
+					<#else>
+					<div>生成二维码失败</div>
+					</#if>
+					
+					<#else>
+					<div style="margin-top:10px;">
+						生成临时二维码参考：WxApiCtrl.createQrcode 方法
+					</div>
+					<form id="queryPageForm" action="${s.base}/wxapi/createQrcode.html" method="post">
+						<span>请输入参数(数字)：</span>
+						<input type="text" id="num" name="num" maxlength="8"/>
+						<input type="button" class="btn" value="生成临时二维码" style="width:150px;" onclick="doCreate()"/>
+					</form>
+					</#if>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+		
+		<script type="text/javascript">
+			function doCreate(){
+				var num = $('#num').val();
+				if(!rf.numValid(num)){
+					alert('请输入参数');
+				}else{
+					$('#queryPageForm').submit();
+				}
+			}
+		</script>
+	</body>
+	
+</html>

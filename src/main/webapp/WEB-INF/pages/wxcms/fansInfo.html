@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">粉丝详细信息</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						粉丝的详细信息
+					</span>
+				</div>
+				
+				<div class="block-content-content">
+					<table class="fm-table">
+						<tbody>
+							<tr>
+								<td >头像</td><td><img style="width:64px;height:64px;margin:5px;" src="${fans.headimgurl!}"/></td>
+							</tr>
+							<tr>
+								<td style="width:300px;">昵称</td><td>${fans.nicknameStr!}</td>
+							</tr>
+							<tr>
+								<td >地址</td><td>${fans.province!}-${fans.city!}</td>
+							</tr>
+							<tr>
+								<td >openid</td><td>${fans.openId!}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

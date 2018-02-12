@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,user-scalable=no" name="viewport">
+		<title>测试：给我自己发送消息</title>
+		<style>
+			#id_description p{
+				font-size: 16px;
+				letter-spacing:2px;
+				line-height:22px;
+				font-family: "Microsoft YaHei" ! important;
+				color: #3e3e3e;
+			}
+			#id_description img{
+				margin-top: 2px;
+				border-radius:5px; 
+			}
+			.btn{
+				display:inline-block;
+				cursor:pointer;
+				background-color:#44b549;
+				border: 1px solid #44b549; 
+				border-radius:3px;
+				width:90px;
+				height: 30px;
+				line-height: 28px;
+				margin-left: 10px;
+				color:#fff;
+				margin-top: 5px;
+			}
+		</style>
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	</head>
+	
+	<body style="margin: 0px;padding: 0px;background-color:#e7e8eb;">
+		<div style="margin:0 auto;background-color:#fff;">
+			<div style="padding: 0px 20px;">
+				<div style="height:10px;"></div>
+			
+				<div style="font-weight:bold;font-size:20px;border-bottom:1px solid #e7e8eb;">
+				测试给我自己发送消息,请确保您已经关注了微信派官方账号（weixinpy-com）
+				</div>
+				
+				<div style="margin-top:20px;">
+					1.给我发送客服消息：
+					<form action="${s.base}/wxapi/sendCustomTextMsg.html" method="post">
+						<input name="openid" type="hidden" value="${openid!}"/><!-- 我的openid，是通过OAuth接口获取的 -->
+						<input type="submit" value="点击发送" class="btn"/>
+					</form>
+				</div>
+				
+				<div style="margin-top:20px;">
+					2.给我发送模板消息：
+					<form action="${s.base}/wxapi/sendTemplateMessage.html" method="post" >
+						<input name="openid" type="hidden" value="${openid!}"/><!-- 我的openid，是通过OAuth接口获取的 -->
+						<input type="submit" value="点击发送" class="btn"/>
+					</form>
+				</div>
+			</div>
+			<#include "../common/wx_footer.html">
+		</div>
+	</body>
+</html>
+
+

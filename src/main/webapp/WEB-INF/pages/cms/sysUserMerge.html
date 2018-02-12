@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">用户 添加/修改</span>
+				</div>
+				
+				<div class="block-content-content">
+					<form class="fm-form" action="${s.base}/cms/sysUser/doMerge.html" method="post">
+						<input type="hidden" name="id" value="${entity.id!}"/>
+						<ul>
+							<li>
+								<label>姓名  </label>
+								<input name="realname" type="text" value="${entity.realname!}"/>
+							</li>
+							<li>
+								<label>登录名 </label>
+								<input name="loginname" type="text" value="${entity.loginname!}"/>
+							</li>
+							<li>
+								<label>性别 </label>
+								<select name="gender" style="width:158px;">
+									<option value="1" <#if entity.gender == 1 >selected="selected" </#if> >男</option>
+									<option value="0" <#if entity.gender == 0 >selected="selected" </#if> >女</option>
+								</select>
+							</li>
+							<li>
+								<label>是否激活 </label>
+								<select name="enable" style="width:158px;">
+									<option value="1" <#if entity.enable == 1 >selected="selected" </#if> >激活</option>
+									<option value="0" <#if entity.enable == 0 >selected="selected" </#if> >禁用</option>
+								</select>
+							</li>
+						</ul>
+						
+						<div style="margin-left:75px;margin-top: 20px;">
+							<input class="btn" type="submit" value="保 存"/>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="clearfloat"></div>
+		</div>
+		
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

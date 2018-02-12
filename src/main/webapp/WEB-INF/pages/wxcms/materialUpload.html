@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">永久素材上传</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						以上传图文素材为例，其中包括将"图片链接"对应的图片上传到微信服务器
+					</span>
+				</div>
+				<form class="fm-form" id="queryPageForm" action="${s.base}/wxapi/doUploadMaterial.html" method="post">
+				<div class="block-content-content">
+					<ul>
+						<li>
+							<label>标题 </label>
+							<input name="title" type="text" style="width:452px;" value=""/>
+						</li>
+						<li>
+							<label>图片链接 </label>
+							<input name="picpath" type="text" style="width:452px;" value=""/>
+							<span style="color:red">*</span>
+						</li>
+						<li>
+							<label>作者 </label>
+							<input name="author" type="text" value="微信派"/>
+						</li>
+						<li>
+							<label>原文链接 </label>
+							<input type="text" name="fromurl" value="www.bdsc.online/" style="width:452px;" />
+						</li>
+					</ul>
+					<div style="margin-left:75px;margin-top: 20px;">
+						<input class="btn" type="submit" value="上 传"/>
+					</div>
+				</div>
+				</form>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

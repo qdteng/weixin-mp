@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		
+		<script type="text/javascript">
+			function doAdd(){
+				var gid = $('#id_gid').val();
+				if(!rf.isEmpty(gid)){
+					$('#id_menu_group_form').attr('action','${s.base}/accountmenu/toMerge.html');
+					$('#id_menu_group_form').submit();
+				}else{
+					alert('请先保存菜单组名称');
+				}
+			}
+			function doSaveGroupMenu(){
+				var name = $('#id_name').val();
+				if(!rf.isEmpty(name)){
+					$('#id_menu_group_form').attr('action','${s.base}/wxcms/accountMenuGroup/doMerge.html');
+					$('#id_menu_group_form').submit();
+				}else{
+					alert('菜单组名称不能为空');
+				}
+			}
+			function doDelete(id){
+				if(confirm("确定删除?")){
+					window.location.href='${s.base}/accountmenu/delete.html?id='+id+'&gid=${groupEntity.id!}';
+				}
+			}
+			function doBack(){
+				window.location.href='${s.base}/wxcms/accountMenuGroup/paginationEntity.html';
+			}
+		</script>
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				<div class="block-content-nav">
+					<span class="title">菜单管理</span>
+				</div>
+				<div class="block-content-description">
+					<span>
+						请先填写 <span style="color:#555;">菜单组名称</span> 并保存 ，再添加菜单
+					</span>
+				</div>
+				<div class="block-content-content">
+					<form id="id_menu_group_form" action="${s.base}/accountmenu/toMerge.html" method="post" >
+						<input id="id_gid" name="id" type="hidden" value="${groupEntity.id!}"/>
+						<input name="gid" type="hidden" value="${groupEntity.id!}"/>
+						<input name="enable" type="hidden" value="${groupEntity.enable!}"/>
+						<ul>
+							<li>
+								<label style="width: 100px;">菜单组名称 </label>
+								<input id="id_name" type="text" name="name" maxlength="10" value="${groupEntity.name!}">
+								<span style="color:red">*</span>
+								<input class="btn" onclick="doSaveGroupMenu();" type="button" value="保 存"/>
+							</li>
+						</ul>
+					</form>
+					<table class="fm-table" style="margin-top:10px;">
+						<thead>
+							<tr>
+								<td rowspan="2" style="width: 100px;">名称</td>
+								<td colspan="3" >消息类型</td>
+								<td rowspan="2" style="width: 100px;">一级菜单</td>
+								<td rowspan="2" style="width: 50px;">顺序</td>
+								<td rowspan="2" style="width: 120px;">
+									<input class="btn" onclick="doAdd();" type="button" value="添 加"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td style="width:150px;">关键字消息</td>
+								<td style="width:150px;">指定消息</td>
+								<td>链接消息</td>
+							</tr>
+						</thead>
+						<tbody>
+							<#list pageList as row>
+							<#if row_index %2 == 0>
+							<tr>
+							<#else>
+							<tr class="even-tr">
+							</#if>
+								<td>${row.name!}</td>
+								<td>${row.inputcode!}</td>
+								<td>${row.msgId!}</td>
+								<td>${row.url!}</td>
+								<td>${row.parentName!}</td>
+								<td>${row.sort!}</td>
+								<td>
+									<a href="javascript:void(0);" onclick="doDelete('${row.id}')">删除</a>
+								</td>
+							</tr>
+							</#list>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		
+		<#include "../common/footer.html">
+	</body>
+</html>
+

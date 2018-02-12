@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">文本消息 添加/修改</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						如果 <span style="color:#555;">关键字 </span> 
+						为 <span style="color:#555;">subscribe</span> ，那么此消息为订阅消息
+					</span>
+				</div>
+				
+				<div class="block-content-content">
+					<form class="fm-form" action="${s.base}/msgtext/doMerge.html" method="post">
+						<input type="hidden" name="id" value="${entity.id!}"/>
+						<input type="hidden" name="baseId" value="${entity.baseId!}"/>
+						<ul>
+							<li>
+								<label>关键字 </label>
+								<input name="inputcode" type="text" value="${baseEntity.inputcode!}"/>
+							</li>
+							<li>
+								<label>内容 </label>
+							</li>
+							<li style="margin-top:-15px;">
+								<label></label>
+								<textarea name="content" rows="10" cols="30">${entity.content!}</textarea>
+							</li>
+						</ul>
+						
+						<div style="margin-left:75px;margin-top: 20px;">
+							<input class="btn" type="submit" value="保 存"/>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="clearfloat"></div>
+		</div>
+		
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

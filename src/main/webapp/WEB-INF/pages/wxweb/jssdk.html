@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,user-scalable=no" name="viewport">
+		<title>微信开发JS-SDK接口源码demo</title>
+		<style>
+			#id_description p{
+				font-size: 16px;
+				letter-spacing:2px;
+				line-height:22px;
+				font-family: "Microsoft YaHei" ! important;
+				color: #3e3e3e;
+			}
+			#id_description img{
+				margin-top: 2px;
+				border-radius:5px; 
+			}
+			.btn{
+				display:inline-block;
+				cursor:pointer;
+				background-color:#44b549;
+				border: 1px solid #44b549; 
+				border-radius:3px;
+				width:90px;
+				height: 30px;
+				line-height: 28px;
+				margin-left: 10px;
+				color:#fff;
+				margin-top: 5px;
+			}
+		</style>
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		
+		<script type="text/javascript">
+			var url = location.href.split('#')[0];
+			$.ajax({
+				url:'${s.base}/wxapi/jsTicket.html' ,
+			    type:'POST',
+			    data:{url:url},
+			    success:function(data){
+			    	var errcode = data.errcode;
+			    	var sign = data.data;
+			    	if(errcode == 0){//没有错误
+			    		wx.config({
+			    		    debug: false,//true的时候可以alert信息 
+			    		    appId: sign.appId,
+			    		    timestamp: sign.timestamp,
+			    		    nonceStr: sign.nonceStr, 
+			    		    signature: sign.signature,
+			    		    jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','hideOptionMenu'] //使用接口时，这里必须先声明 
+			    		});
+			    	}
+			    } ,
+			    dataType:'json'
+			});
+	
+			var title = 'JS-SDK接口源码DEMO，更多微信开发源码下载，访问www.bdsc.online/';
+			var desc = '这里是描述';
+			var imgUrl = 'http://www.jeeweixin.com/res/css/images/wx-pic.jpg';
+	
+			wx.ready(function(){
+				
+				wx.checkJsApi({
+				    jsApiList: ['onMenuShareTimeline'], //需要检测的JS接口列表，所有JS接口列表见附录2,
+				    success: function(res) {
+				        // 以键值对的形式返回，可用的api值true，不可用为false
+				        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+				    }
+				});
+				
+				//分享到朋友圈
+				wx.onMenuShareTimeline({
+				    title: title, 
+				    link: url, 
+				    imgUrl: imgUrl, 
+				    success: function () {
+				    	alert('分享成功');
+				    },
+				    cancel: function () {
+				    	alert('您取消了分享');
+				    }
+				});
+				
+				//分享给朋友
+				wx.onMenuShareAppMessage({
+				    title: title, 
+				    desc: desc, 
+				    link: url, 
+				    imgUrl: imgUrl, 
+				    type: '', 
+				    dataUrl: '', 
+				    success: function () {
+				    	alert('分享成功');
+				    },
+				    cancel: function () {
+				    	alert('您取消了分享');
+				    }
+				});
+
+				<#if api??>
+					<#if api == 'hideOptionMenu'>
+					wx.hideOptionMenu();//点击了下方的“隐藏右上角菜单接口”按钮
+					</#if>
+				</#if>
+			});
+		</script>
+		
+	</head>
+	
+	<body style="margin: 0px;padding: 0px;background-color:#e7e8eb;">
+		<div style="margin:0 auto;background-color:#fff;">
+			<div style="padding: 0px 20px;">
+				<div style="height:10px;"></div>
+				
+				<div style="font-weight:bold;font-size:20px;border-bottom:1px solid #e7e8eb;">
+				微信开发JS-SDK接口源码demo
+				</div>
+				
+				<div style="margin-top:20px;">
+					<span style="font-weight:bold;">部分实例（持续更新）：</span>
+				</div>
+				<div style="margin-top:20px;">
+					1."分享到朋友圈"的标题、描述等都已经通过js api处理。
+					分享成功后会有alert提醒。
+				</div>
+				
+				<div style="margin-top:20px;">
+					2.点击
+					<a href="${s.base}/wxweb/jssdk.html?api=hideOptionMenu"><input class="btn" type="button" value="隐藏右上角菜单接口" style="width:150px;"/></a>
+					查看效果
+				</div>
+			</div>
+			<#include "../common/wx_footer.html">
+		</div>
+	</body>
+</html>
+
+

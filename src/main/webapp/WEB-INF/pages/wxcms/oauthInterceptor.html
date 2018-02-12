@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">通过拦截器处理OAuth认证</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						在微信中如果需要通过页面获取粉丝信息，可以通过拦截器实现OAuth的认证。
+						以通过OAuth接口获取openid为例。<br/>
+						请关注“官方微信(weixinpy-com)”体验。
+					</span>
+				</div>
+				<div class="block-content-content">
+					<div style="margin:10px 0px;">
+						<div>拦截器参考类：WxOAuth2Interceptor.java </div>
+						<div>拦截器在spring配置文件中设置为只拦截：/wxapi/oauthOpenid.html 链接。参考：WxApiCtrl.oauthOpenid方法 </div>
+					</div>
+					
+					<div style="padding:10px;height:500px;">
+						<img src="${s.base}/res/css/images/weixinpy-com-1.jpg" alt="" style="float:left;margin-left:60px;width:300px;"/>
+						<div style="float:right;width:200px;margin-right:100px;">
+							<img src="${s.base}/res/css/images/wxp.jpg" alt="" style="width:150px;"/>
+							<div style="width:200px;">官方微信(weixinpy-com)</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+	</body>
+	
+</html>

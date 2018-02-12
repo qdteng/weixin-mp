@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+		<script type="text/javascript">
+			function showMsg(type){
+				if(type == '1'){//news
+					$('#id_msgtype').val('news');
+					$('#id_news_msg').css('display','block');
+					$('#id_text_msg').css('display','none');
+					
+					$('#id_news_span').attr('class','btn');
+					$('#id_text_span').attr('class','gray-btn');
+				}else{
+					$('#id_msgtype').val('text');
+					$('#id_news_msg').css('display','none');
+					$('#id_text_msg').css('display','block');
+					
+					$('#id_text_span').attr('class','btn');
+					$('#id_news_span').attr('class','gray-btn');
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div style="width:90%;">
+		
+			<div style="text-align:left;">
+				<input type="hidden" id="id_msgtype" name="msgtype" value="news"/>
+				<span id="id_news_span" class="btn" style="width:150px;height:30px;text-align:center;" onclick="showMsg('1')" >图文消息</span>
+				<span id="id_text_span" class="gray-btn" style="width:150px;height:30px;text-align:center;" onclick="showMsg('2')" >文本消息</span>
+			</div>
+			
+			<div style="text-align:left;margin-top:20px;">
+				<div id="id_news_msg">
+					<div>
+						<table class="fm-table">
+						<thead>
+							<tr style="height: 45px;">
+								<td style="width: 100px;">图文消息</td>
+								<td style="width: 100px;">ID</td>
+								<td>标题</td>
+							</tr>
+						</thead>
+						<tbody>
+							<#list newsList as row>
+							<#if row_index %2 == 0>
+							<tr style="height:40px;">
+							<#else>
+							<tr style="height:40px;background-color:#f9f9f9;">
+							</#if>
+								<td><input type="checkbox" value="${row.baseId}" name="checkname"/></td>
+								<td>${row.baseId!}</td>
+								<td>${row.title!}</td>
+							</tr>
+							</#list>
+						</tbody>
+					</table>
+					</div>
+				</div>
+				<div id="id_text_msg" style="display:none;">
+					<h2>请选择 文本消息</h2>
+					<div>
+						<table class="fm-table">
+							<thead>
+								<tr style="height: 45px;">
+									<td style="width: 100px;">文本消息</td>
+									<td style="width: 100px;">ID</td>
+									<td>描述</td>
+								</tr>
+							</thead>
+							<tbody>
+								<#list textList as row>
+								<#if row_index %2 == 0>
+								<tr style="height:40px;">
+								<#else>
+								<tr style="height:40px;background-color:#f9f9f9;">
+								</#if>
+									<td><input value="${row.baseId}" type="radio" name="radioname"/></td>
+									<td>${row.baseId!}</td>
+									<td>${row.content!}</td>
+								</tr>
+								</#list>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</body>
+</html>
+

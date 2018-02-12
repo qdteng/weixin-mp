@@ -1,0 +1,41 @@
+
+<div style="height:10px;"></div>
+
+<ul class="nav-ul" style="border-bottom: none;">
+	<li>
+		<span class="title">开发者公众账号接口</span>
+	</li>
+	<li  <#if cur_nav?? && cur_nav == 'urltoken' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/urltoken.html">
+		<span>URL 和  Token</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'text' > class="cur-nav" </#if> ><a href="${s.base}/msgtext/list.html">
+		<span>文本消息</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'news' > class="cur-nav" </#if> ><a href="${s.base}/msgnews/list.html">
+		<span>图文消息</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'menu' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/accountMenuGroup/paginationEntity.html">
+		<span>菜单管理</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'fans' > class="cur-nav" </#if> ><a href="${s.base}/accountfans/paginationEntity.html">
+		<span>粉丝管理</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'material' > class="cur-nav" </#if> ><a href="${s.base}/wxapi/syncMaterials.html">
+		<span>永久素材管理</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'qrcode' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/qrcode.html">
+		<span>生成参数二维码</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'oauthInterceptor' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/oauthInterceptor.html">
+		<span>拦截器处理OAuth认证</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'sendmsg' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/sendMsg.html">
+		<span>发送消息</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'jssdk' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/jssdk.html">
+		<span>JS-SDK接口</span>
+	</a></li>
+</ul>
+
+
+

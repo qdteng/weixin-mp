@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "../common/res.html">
+	</head>
+	
+	<body class="bg">
+		<#include "../common/top.html">
+		
+		<div class="content">
+			<div class="block-nav">
+				<#include "../common/nav.html">
+			</div>
+			<div class="block-content" >
+				
+				<div class="block-content-nav">
+					<span class="title">发送消息</span>
+				</div>
+				
+				<div class="block-content-description">
+					<span>
+						以给openid（粉丝）发送消息为例：客服消息、模板消息、群发消息。客服消息，请确保24小时之内给微信公众号发送过消息才有效。 <br/>
+						因为给openid（粉丝）发送消息有一定的私密性，请关注“官方微信(weixinpy-com)”给自己发送消息体验。
+					</span>
+				</div>
+				
+				<div class="block-content-content">
+					<div style="padding:10px;height:800px;">
+						<div>
+							<div style="font-weight:bold;">
+							以给openid发送消息为例(openid到粉丝管理信息中获取)
+							</div>
+							
+							<div style="margin-top:10px;">
+								客服消息请参考：WxApiCtrl.sendCustomTextMsg 方法
+							</div>
+							<div>
+								<form action="${s.base}/wxapi/sendCustomTextMsg.html" method="post">
+									openid：<input name="openid" style="width:250px;"/>
+									<input type="submit" value="发送" class="btn"/>
+								</form>
+							</div>
+							
+							<div style="margin-top:10px;">
+								模板消息请参考：WxApiCtrl.sendTemplateMessage 方法
+							</div>
+							<div>
+								<form action="${s.base}/wxapi/sendTemplateMessage.html">
+									openid：<input name="openid" style="width:250px;"/>
+									<input type="submit" value="发送" class="btn"/>
+								</form>
+							</div>
+							
+							<div style="margin-top:10px;">
+								群发文本消息(时间有延迟)：WxApiCtrl.massSendTextMsg 方法
+							</div>
+							<div>
+								<form action="${s.base}/wxapi/massSendTextMsg.html" method="post">
+									openid：<input name="openid" style="width:250px;"/>
+									<input type="submit" value="发送" class="btn"/>
+								</form>
+							</div>
+						</div>
+						
+						<div style="margin-top:20px;">
+							<img src="${s.base}/res/css/images/weixinpy-com-1.jpg" alt="" style="float:left;margin-left:60px;width:300px;"/>
+							<div style="float:right;width:200px;margin-right:100px;">
+								<img src="${s.base}/res/css/images/wxp.jpg" alt="" style="width:150px;"/>
+								<div style="width:200px;">官方微信(weixinpy-com)</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+		<#include "../common/footer.html">
+	</body>
+	
+</html>
