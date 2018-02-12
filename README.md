@@ -28,6 +28,10 @@
 	26、JS-Ticket的缓存
 	27、JS-SDK 实例
 	28、自定义个性化菜单接口
+	
+预览
+---------------
+![](https://github.com/qdteng/weixin-mp/blob/master/src/main/webapp/res/css/images/jeepy.jpg) 	
 
 
 
